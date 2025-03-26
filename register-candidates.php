@@ -117,7 +117,7 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
               </div>
               <div class="form-group">
                 <label>Date Of Birth</label>
-                <input class="form-control input-lg" type="date" id="dob" min="1960-01-01" max="1999-01-31" name="dob" placeholder="Date Of Birth">
+                <input class="form-control input-lg" type="date" id="dob" min="1975-01-01" max="2030-01-31" name="dob" placeholder="Date Of Birth">
               </div>
               <div class="form-group">
                 <input class="form-control input-lg" type="text" id="age" name="age" placeholder="Age" readonly>

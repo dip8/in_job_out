@@ -48,24 +48,31 @@ require_once("db.php");
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index" class="logo logo-bg">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>J</b>P</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Job</b> Portal</span>
-    </a>
+      <a href="index" class="logo logo-bg">
+          <span class="logo-mini"><img src="img/logo.png"></span>
+          <span class="logo-lg"><img src="img/logo.png"></span>
+      </a>
 
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <li>
-            <a href="login">Login</a>
-          </li>
-          <li>
-            <a href="sign-up">Sign Up</a>
-          </li>          
+            <li><a href="jobs">Jobs</a></li>
+            <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
+                <li><a href="login-candidates">Candidate Login / Registration</a></li>
+                <li><a href="login-company">Company Login / Registration</a></li>
+            <?php } else {
+                if(isset($_SESSION['id_user'])) {
+                    ?>
+                    <li><a href="user/index">Dashboard</a></li>
+                    <?php
+                } else if(isset($_SESSION['id_company'])) {
+                    ?>
+                    <li><a href="company/index">Dashboard</a></li>
+                <?php } ?>
+                <li><a href="logout">Logout</a></li>
+            <?php } ?>
         </ul>
       </div>
     </nav>
@@ -117,12 +124,17 @@ require_once("db.php");
               <img src="uploads/logo/<?php echo $row['logo']; ?>" alt="companylogo">
               <div class="caption text-center">
                 <h3><?php echo $row['companyname']; ?></h3>
-                <p><a href="#" class="btn btn-primary btn-flat" role="button">More Info</a>
+<!--                <p><a href="#" class="btn btn-primary btn-flat" role="button">More Info</a>-->
                 <hr>
                 <div class="row">
-                  <div class="col-md-4"><a href=""><i class="fa fa-address-card-o"></i> Apply</a></div>
-                  <div class="col-md-4"><a href=""><i class="fa fa-warning"></i> Report</a></div>
-                  <div class="col-md-4"><a href=""><i class="fa fa-envelope"></i> Email</a></div>
+          <?php
+          if(isset($_SESSION["id_user"]) && empty($_SESSION['companyLogged'])) { ?>
+                  <div class="col-md-4"><a href="apply?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-address-card-o"></i> Apply</a></div>
+          <?php }else{ ?>
+              <div class="col-md-4"><a href="login-candidates"><i class="fa fa-address-card-o"></i> Apply</a></div>
+          <?php }?>
+                  <div class="col-md-4"><a href="login"><i class="fa fa-warning"></i> Report</a></div>
+                  <div class="col-md-4"><a href="login"><i class="fa fa-envelope"></i> Email</a></div>
                 </div>
               </div>
             </div>

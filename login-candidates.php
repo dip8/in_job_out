@@ -47,7 +47,7 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Candidates Login</p>
+    <p class="login-box-msg">Candidate Login</p>
 
     <form method="post" action="checklogin">
       <div class="form-group has-feedback">
@@ -68,6 +68,8 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
         </div>
         <!-- /.col -->
       </div>
+        <br>
+        <p>Ready to take the next step? <a href="register-candidates">Registration</a></p>
     </form>
 
     <br>

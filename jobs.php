@@ -173,8 +173,8 @@ require_once("db.php");
           <li><a href="index#about">About Us</a></li>
 
           <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
-          <li><a href="login">Login</a></li>
-          <li><a href="sign-up">Sign Up</a></li>
+          <li><a href="login-candidates">Candidate Login / Registration</a></li>
+          <li><a href="login-company">Company Login / Registration</a></li>
           <?php } else { 
             if(isset($_SESSION['id_user'])) { 
           ?>        

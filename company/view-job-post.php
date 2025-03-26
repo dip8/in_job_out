@@ -57,12 +57,10 @@ require_once("../db.php");
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index" class="logo logo-bg">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>J</b>P</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Job</b> Portal</span>
-    </a>
+      <a href="index" class="logo logo-bg">
+          <span class="logo-mini"><img src="../img/logo.png"></span>
+          <span class="logo-lg"><img src="../img/logo.png"></span>
+      </a>
 
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

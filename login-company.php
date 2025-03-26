@@ -67,6 +67,9 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
+          <br>
+          <br>
+          <p>Ready to the next step? <a href="register-company">Registration</a></p>
         <!-- /.col -->
         <div class="col-xs-12">
         <?php 

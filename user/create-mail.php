@@ -134,7 +134,7 @@ require_once("../db.php");
       <div class="collapse navbar-collapse navbar-custom-menu" id="navbarNav">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="../jobs">Jobs</a></li>
-          <li><a href="logout">Logout</a></li>
+          <li><a href="../logout">Logout</a></li>
         </ul>
       </div>
     </div>

@@ -35,13 +35,11 @@ require_once("../db.php");
   <link rel="stylesheet" href="../css/_all-skins.min.css">
   <!-- Custom -->
   <link rel="stylesheet" href="../css/custom.css">
+    <!-- Include jQuery -->
+    <link rel="stylesheet" href="../css/froala_editor.pkgd.min.css">
+    <script src="../js/froala_editor.pkgd.min.js"></script>
 
-  <script src="../js/tinymce/tinymce.min.js"></script>
-
-  <script>tinymce.init({ selector:'#description', height: 300 });</script>
-
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -154,7 +152,13 @@ require_once("../db.php");
 
 </div>
 <!-- ./wrapper -->
-
+<!-- Initialize Froala -->
+<script>
+    new FroalaEditor('#description', {
+        toolbarButtons: ['bold', 'italic', 'underline', 'formatOL', 'formatUL', 'paragraphFormat'],
+        quickInsertEnabled: false
+    });
+</script>
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->

@@ -126,8 +126,8 @@ require_once("db.php");
           <li><a href="#about">About Us</a></li>
 
           <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
-          <li><a href="login">Login</a></li>
-          <li><a href="sign-up">Sign Up</a></li>
+          <li><a href="login-candidates">Candidate Login / Registration</a></li>
+          <li><a href="login-company">Company Login / Registration</a></li>
           <?php } else { 
             if(isset($_SESSION['id_user'])) { 
           ?>        
@@ -172,7 +172,7 @@ require_once("db.php");
            * Store sql query result in $result variable and loop through it if we have any rows
            * returned from database. $result->num_rows will return total number of rows returned from database.
           */
-          $sql = "SELECT * FROM job_post Order By Rand() Limit 4";
+          $sql = "SELECT * FROM job_post Order By Rand() Limit 20";
           $result = $conn->query($sql);
           if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) 
