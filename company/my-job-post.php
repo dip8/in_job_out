@@ -22,7 +22,7 @@ require_once("../db.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="img/logs.png">
+    <link rel="icon" href="../img/logs.png">
   <title>In Job Out</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -121,7 +121,11 @@ require_once("../db.php");
                       ?>
                       <tr>
                         <td><?php echo $row['jobtitle']; ?></td>
-                        <td><a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-address-card-o"></i></a></td>
+                        <td>
+                            <a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-address-card-o"></i></a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="edit-job-post?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-pencil"></i></a>
+                        </td>
                       </tr>
                       <?php
                        }

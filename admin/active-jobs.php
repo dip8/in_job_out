@@ -18,7 +18,7 @@ require_once("../db.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="img/logs.png">
+  <link rel="icon" href="../img/logs.png">
   <title>In Job Out</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -101,6 +101,7 @@ require_once("../db.php");
                       <th>Company Name</th>
                       <th>Date Created</th>
                       <th>View</th>
+                      <th>Edit</th>
                       <th>Delete</th>
                     </thead>
                     <tbody>
@@ -116,8 +117,9 @@ require_once("../db.php");
                         <td><?php echo $row['companyname']; ?></td>
                         <td><?php echo date("d-M-Y", strtotime($row['createdat'])); ?></td>
                         <td><a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-address-card-o"></i></a></td>
-                        <td><a href="delete-job-post?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-trash"></i></a></td>
-                      </tr>  
+                          <td><a href="edit-job-post?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-pencil"></i></a></td>
+                          <td><a href="delete-job-post?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-trash"></i></a></td>
+                      </tr>
                             <?php
                         }
                       }

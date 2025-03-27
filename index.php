@@ -186,7 +186,7 @@ require_once("db.php");
             <div class="attachment-block clearfix">
               <img class="attachment-img" src="img/photo1.png" alt="Attachment Image">
               <div class="attachment-pushed">
-                <h4 class="attachment-heading"><a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>"><?php echo $row['jobtitle']; ?></a> <span class="attachment-heading pull-right">$<?php echo $row['maximumsalary']; ?>/Month</span></h4>
+                <h4 class="attachment-heading"><a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>"><?php echo $row['jobtitle']; ?></a> <span class="attachment-heading pull-right">₹<?php echo $row['maximumsalary']; ?>/Month</span></h4>
                 <div class="attachment-text">
                     <div><strong><?php echo $row1['companyname']; ?> | <?php echo $row1['city']; ?> | Experience <?php echo $row['experience']; ?> Years</strong></div>
                 </div>

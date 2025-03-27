@@ -20,7 +20,7 @@ require_once("../db.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="img/logs.png">
+    <link rel="icon" href="../img/logs.png">
   <title>In Job Out</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -35,6 +35,9 @@ require_once("../db.php");
   <link rel="stylesheet" href="../css/_all-skins.min.css">
   <!-- Custom -->
   <link rel="stylesheet" href="../css/custom.css">
+    <!-- Include jQuery -->
+    <link rel="stylesheet" href="../css/froala_editor.pkgd.min.css">
+    <script src="../js/froala_editor.pkgd.min.js"></script>
   <!-- DataTables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
@@ -48,7 +51,12 @@ require_once("../db.php");
   <![endif]-->
     <link rel="stylesheet" href="../css/froala_editor.pkgd.min.css">
     <script src="../js/froala_editor.pkgd.min.js"></script>
-  <!-- Google Font -->
+    <style>
+        div > a:nth-child(1) {
+            display: none!important ;
+        }
+    </style>
+    <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>

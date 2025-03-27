@@ -17,7 +17,7 @@ if(isset($_SESSION['id_admin'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="img/logs.png">
+    <link rel="icon" href="../img/logs.png">
   <title>In Job Out</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -47,7 +47,6 @@ if(isset($_SESSION['id_admin'])) {
   <div class="login-logo">
     <!-- <a href="../index"><b>Job</b> Portal</a> -->
     <a href="index" class="logo logo-bg">
-    <span class="logo-mini"><img src="../img/logo.png"></span>
     <span class="logo-lg"><img src="../img/logo.png"></span>
   </a>
   </div>

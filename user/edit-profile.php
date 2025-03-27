@@ -20,7 +20,7 @@ require_once("../db.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="img/logs.png">
+  <link rel="icon" href="../img/logs.png">
   <title>In Job Out</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -197,6 +197,19 @@ require_once("../db.php");
                     <label for="state">State</label>
                     <input type="text" class="form-control input-lg" id="state" name="state"  placeholder="state" onkeypress="return validateName(event);" value="<?php echo $row['state']; ?>">
                   </div>
+                    <div class="form-group">
+                        <select class="form-control input-lg" id="designation" name="designation">
+                            <option value="">Select Designation</option>
+                            <option value="fresher">Fresher</option>
+                            <option value="experienced">Experienced</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="company-container" style="display: none;">
+                        <label for="company_name">Company Name</label>
+                        <input type="text" class="form-control input-lg" id="company_name" name="company_name" placeholder="Company Name" value="<?php echo $row['company_name']; ?>">
+                    </div>
+                    <!-- Experience Dropdown (Initially Hidden) -->
+
                   <div class="form-group">
                     <button type="submit" class="btn btn-flat btn-success">Update Profile</button>
                   </div>
@@ -222,6 +235,17 @@ require_once("../db.php");
                     <label>About Me</label>
                     <textarea class="form-control input-lg" rows="4" name="aboutme"><?php echo $row['aboutme']; ?></textarea>
                   </div>
+                    <div class="form-group" id="experience-container" style="display: none;">
+                        <label for="experience">Select Experience (Years)</label>
+                        <select class="form-control input-lg" id="experience" name="experience">
+                            <option value="">Select Experience</option>
+                            <!-- Dynamically generated options 1-30 -->
+                        </select>
+                    </div>
+                    <div class="form-group" id="notice-period-container" style="display: none;">
+                        <label for="notice_period_container">Notice Period</label>
+                        <input type="text" class="form-control input-lg" id="notice_period_container" name="notice_period_container" placeholder="Company Name" value="<?php echo $row['notice_period']; ?>">
+                    </div>
                   <div class="form-group">
                     <label>Upload/Change Resume</label>
                     <input type="file" name="resume" class="btn btn-default">
@@ -312,6 +336,30 @@ require_once("../db.php");
       }
 
 
+</script>
+<!-- jQuery for Dynamic Show/Hide -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Populate experience dropdown with 1-30 years dynamically
+        for (let i = 1; i <= 30; i++) {
+            $('#experience').append('<option value="' + i + '">' + i + ' Years</option>');
+        }
+
+        // Show/Hide experience dropdown based on designation selection
+        $('#designation').change(function () {
+            if ($(this).val() === "experienced") {
+                $('#experience-container').show();
+                $('#company-container').show();
+                $('#notice-period-container').show();
+            } else {
+                $('#experience-container').hide();
+                $('#company-container').hide();
+                $('#notice-period-container').hide();
+                $('#experience').val(''); // Reset experience selection
+            }
+        });
+    });
 </script>
 </body>
 </html>

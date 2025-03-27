@@ -20,92 +20,45 @@ require_once("../db.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="img/logs.png">
-  <title>In Job Out</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../css/AdminLTE.min.css">
-  <link rel="stylesheet" href="../css/_all-skins.min.css">
-  <!-- Custom -->
-  <link rel="stylesheet" href="../css/custom.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+  <link rel="icon" href="../img/logs.png">
+    <title>In Job Out</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../css/_all-skins.min.css">
+    <!-- Custom -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <!-- Include jQuery -->
+    <link rel="stylesheet" href="../css/froala_editor.pkgd.min.css">
+    <script src="../js/froala_editor.pkgd.min.js"></script>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
-  <script src="../js/tinymce/tinymce.min.js"></script>
-  <script>tinymce.init({ selector:'#description', height: 150 });</script>
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-        <!-- jQuery and Bootstrap 3.3.7 JS (Required for Navbar Collapse) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-  /* Ensure Navbar Background is White */
-  .navbar {
-    background-color: white;
-    border-bottom: 1px solid #ddd;
-  }
-
-  /* White Background for Mobile Menu */
-  .navbar-collapse {
-    background: white;
-    padding: 10px;
-  }
-
-  /* Font Size Adjustments */
-  .navbar-nav > li > a {
-    font-size: 16px; /* Default */
-    color: #333;
-  }
-
-  /* Mobile View Styles */
-  @media (max-width: 768px) {
-    .navbar-nav {
-      width: 100%;
-      text-align: center; /* Center menu items */
-    }
-    .navbar-nav > li {
-      float: none; /* Make items stack */
-    }
-    .navbar-nav > li > a {
-      font-size: 16px; /* Smaller font for mobile */
-      display: block;
-      padding: 10px 10px 10px 16px;
-    }
-    .navbar-collapse {
-      background: white;
-    }
-  }
-
-  /* Ensure Toggle Button is Visible */
-  .navbar-toggle {
-    border: none;
-    background: transparent !important;
-  }
-
-  .navbar-toggle .icon-bar {
-    background-color: #333; /* Dark color for visibility */
-  }
-
-  /* Adjust Navbar Padding */
-  .navbar-static-top {
-    padding: 10px 10px 10px 10px;
-  }
-</style>
+    <!--  <script src="../js/tinymce/tinymce.min.js"></script>-->
+    <script>tinymce.init({ selector:'#description', height: 150 });</script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/froala_editor.pkgd.min.css">
+    <script src="../js/froala_editor.pkgd.min.js"></script>
+    <style>
+        div > a:nth-child(1) {
+            display: none!important ;
+        }
+    </style>
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition  sidebar-mini">
 <div class="wrapper">
@@ -189,7 +142,7 @@ require_once("../db.php");
                   <input class="form-control" name="subject" placeholder="Subject:">
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control input-lg" id="description" name="description" placeholder="Job Description"></textarea>
+                    <textarea class="form-control input-lg" id="description" name="description" placeholder="Job Description"></textarea>
                 </div>
               </div>
               <!-- /.box-body -->
@@ -223,7 +176,12 @@ require_once("../db.php");
 
 </div>
 <!-- ./wrapper -->
-
+<script>
+    new FroalaEditor('#description', {
+        toolbarButtons: ['bold', 'italic', 'underline', 'formatOL', 'formatUL', 'paragraphFormat'],
+        quickInsertEnabled: false
+    });
+</script>
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->

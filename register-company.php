@@ -61,34 +61,7 @@ require_once("db.php");
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <li>
-            <a href="jobs">Jobs</a>
-          </li>
-          <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
-          <li>
-            <a href="login">Login</a>
-          </li>
-          <li>
-            <a href="sign-up">Sign Up</a>
-          </li>  
-          <?php } else { 
 
-            if(isset($_SESSION['id_user'])) { 
-          ?>        
-          <li>
-            <a href="user/index">Dashboard</a>
-          </li>
-          <?php
-          } else if(isset($_SESSION['id_company'])) { 
-          ?>        
-          <li>
-            <a href="company/index">Dashboard</a>
-          </li>
-          <?php } ?>
-          <li>
-            <a href="logout">Logout</a>
-          </li>
-          <?php } ?>          
         </ul>
       </div>
     </nav>

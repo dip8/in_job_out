@@ -4,11 +4,11 @@
 session_start();
 
 //If user Not logged in then redirect them back to homepage. 
-//This is required if user tries to manually enter view-job-post in URL.
 if(empty($_SESSION['id_company'])) {
   header("Location: ../index");
   exit();
 }
+
 require_once("../db.php");
 ?>
 <!DOCTYPE html>
@@ -30,26 +30,31 @@ require_once("../db.php");
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../css/AdminLTE.min.css">
   <link rel="stylesheet" href="../css/_all-skins.min.css">
   <!-- Custom -->
   <link rel="stylesheet" href="../css/custom.css">
-  
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- Include jQuery -->
+    <link rel="stylesheet" href="../css/froala_editor.pkgd.min.css">
+    <script src="../js/froala_editor.pkgd.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+    <style>
+        div > a:nth-child(1) {
+            display: none!important ;
+        }
+        </style>
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition  sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -65,7 +70,7 @@ require_once("../db.php");
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-                  
+                   
         </ul>
       </div>
     </nav>
@@ -86,75 +91,63 @@ require_once("../db.php");
                 <ul class="nav nav-pills nav-stacked">
                   <li><a href="index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                   <li><a href="edit-company"><i class="fa fa-tv"></i> My Company</a></li>
-                  <li><a href="create-job-post"><i class="fa fa-file-o"></i> Create Job Post</a></li>
+                  <li class="active"><a href="create-job-post"><i class="fa fa-file-o"></i> Create Job Post</a></li>
                   <li><a href="my-job-post"><i class="fa fa-file-o"></i> My Job Post</a></li>
                   <li><a href="job-applications"><i class="fa fa-file-o"></i> Job Application</a></li>
                   <li><a href="mailbox"><i class="fa fa-envelope"></i> Mailbox</a></li>
                   <li><a href="settings"><i class="fa fa-gear"></i> Settings</a></li>
-                  <li class="active"><a href="resume-database"><i class="fa fa-user"></i> Resume Database</a></li>
+                  <li><a href="resume-database"><i class="fa fa-user"></i> Resume Database</a></li>
                   <li><a href="../logout"><i class="fa fa-arrow-circle-o-right"></i> Logout</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-9 bg-white padding-2">
-            <h2><i>Talent Database</i></h2>
-            <p>In this section you can download resume of all candidates who applied to your job posts</p>
-            <div class="row margin-top-20">
-              <div class="col-md-12">
-                <div class="box-body table-responsive no-padding">
-                  <table id="example2" class="table table-hover">
-                    <thead>
-                      <th>Candidate</th>
-                      <th>Highest Qualification</th>
-                      <th>Skills</th>
-                      <th>City</th>
-                      <th>State</th>
-                      <th>Download Resume</th>
-                    </thead>
-                    <tbody>
-                    <?php
-                       $sql = "SELECT users.* FROM job_post INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost  INNER JOIN users ON users.id_user=apply_job_post.id_user WHERE apply_job_post.id_company='$_SESSION[id_company]' GROUP BY users.id_user";
-                            $result = $conn->query($sql);
+            <h2><i>Edit Job Post</i></h2>
+            <div class="row">
+              <form method="post" action="edit_post">
+                  <?php
+                  $sql = "SELECT * FROM job_post WHERE id_company='$_SESSION[id_company]' AND id_jobpost='$_GET[id]'";
+                  $result = $conn->query($sql);
 
-                            if($result->num_rows > 0) {
-                              while($row = $result->fetch_assoc()) 
-                              {     
-
-                                $skills = $row['skills'];
-                                $skills = explode(',', $skills);
-                      ?>
-                      <tr>
-                        <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
-                        <td><?php echo $row['qualification']; ?></td>
-                        <td>
-                          <?php
-                          foreach ($skills as $value) {
-                            echo ' <span class="label label-success">'.$value.'</span>';
-                          }
-                          ?>
-                        </td>
-                        <td><?php echo $row['city']; ?></td>
-                        <td><?php echo $row['state']; ?></td>
-                        <td><a href="../uploads/resume/<?php echo $row['resume']; ?>" download="<?php echo $row['firstname'].' Resume'; ?>"><i class="fa fa-file-pdf-o"></i></a></td>
-                      </tr>
-
-                      <?php
-
-                        }
-                      }
-                      ?>
-
-                    </tbody>                    
-                  </table>
+                  //If Job Post exists then display details of post
+                  if($result->num_rows > 0) {
+                  while($row = $result->fetch_assoc())
+                  {
+                  ?>
+                <div class="col-md-12 latest-job ">
+                  <div class="form-group">
+                      <input class="form-control input-lg" type="hidden" id="id" name="id" value="<?=$row['id_jobpost']?>" placeholder="Job Title">
+                      <input class="form-control input-lg" type="text" id="jobtitle" name="jobtitle" value="<?=$row['jobtitle']?>" placeholder="Job Title">
+                  </div>
+                  <div class="form-group">
+                    <textarea class="form-control input-lg" id="description" name="description" placeholder="Job Description"><?=$row['description']?></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="number" class="form-control  input-lg" id="minimumsalary" value="<?=$row['minimumsalary']?>" min="1000" max="1000000" autocomplete="off" name="minimumsalary" placeholder="Minimum Salary" required="">
+                  </div>
+                  <div class="form-group">
+                    <input type="number" class="form-control  input-lg" id="maximumsalary" value="<?=$row['maximumsalary']?>" name="maximumsalary" min="1000" max="1000000" placeholder="Maximum Salary" required="">
+                  </div>
+                  <div class="form-group">
+                <input type="number" class="form-control  input-lg" id="experience" value="<?=$row['experience']?>" autocomplete="off" name="experience" placeholder="Experience (in Years) Required" required="">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control  input-lg" id="qualification" value="<?=$row['qualification']?>" name="qualification" placeholder="Qualification Required" required="">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-flat btn-success">Update</button>
+                  </div>
                 </div>
-              </div>
+                  <?php }}?>
+              </form>
             </div>
             
           </div>
         </div>
       </div>
     </section>
+
     
 
   </div>
@@ -162,7 +155,7 @@ require_once("../db.php");
 
   <footer class="main-footer" style="margin-left: 0px;">
     <div class="text-center">
-      <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
+      <strong>Copyright &copy; 2016-2017 <a href="jonsnow.netai.net">Job Portal</a>.</strong> All rights
     reserved.
     </div>
   </footer>
@@ -174,28 +167,18 @@ require_once("../db.php");
 
 </div>
 <!-- ./wrapper -->
-
+<!-- Initialize Froala -->
+<script>
+    new FroalaEditor('#description', {
+        toolbarButtons: ['bold', 'italic', 'underline', 'formatOL', 'formatUL', 'paragraphFormat'],
+        quickInsertEnabled: false
+    });
+</script>
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../js/adminlte.min.js"></script>
-
-
-<script>
-  $(function () {
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    });
-  });
-</script>
 </body>
 </html>

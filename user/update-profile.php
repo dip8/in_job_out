@@ -24,7 +24,11 @@ if(isset($_POST)) {
 	$qualification = mysqli_real_escape_string($conn, $_POST['qualification']);
 	$stream = mysqli_real_escape_string($conn, $_POST['stream']);
 	$skills = mysqli_real_escape_string($conn, $_POST['skills']);
-	$aboutme = mysqli_real_escape_string($conn, $_POST['aboutme']);
+    $aboutme = mysqli_real_escape_string($conn, $_POST['aboutme']);
+    $experience = mysqli_real_escape_string($conn, $_POST['experience']);
+    $designation = mysqli_real_escape_string($conn, $_POST['designation']);
+    $company_name = mysqli_real_escape_string($conn, $_POST['company_name']);
+    $notice_period = mysqli_real_escape_string($conn, $_POST['notice_period_container']);
 
 	$uploadOk = true;
 
@@ -66,7 +70,7 @@ if(isset($_POST)) {
 	
 
 	//Update User Details Query
-	$sql = "UPDATE users SET firstname='$firstname', lastname='$lastname', address='$address', city='$city', state='$state', contactno='$contactno', qualification='$qualification', stream='$stream', skills='$skills', aboutme='$aboutme'";
+	$sql = "UPDATE users SET firstname='$firstname', lastname='$lastname', address='$address', city='$city', state='$state', contactno='$contactno', qualification='$qualification', stream='$stream', skills='$skills', aboutme='$aboutme', experience='$experience', designation='$designation', notice_period='$notice_period', company_name='$company_name'";
 
 	if($uploadOk == true) {
 		$sql .= ", resume='$file'";

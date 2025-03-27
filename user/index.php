@@ -20,7 +20,7 @@ require_once("../db.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="img/logs.png">
+  <link rel="icon" href="../img/logs.png">
   <title>In Job Out</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -163,42 +163,52 @@ require_once("../db.php");
               </div>
             </div>
           </div>
-          <div class="col-md-9 bg-white padding-2">
-            <h2><i>Recent Applications</i></h2>
-            <p>Below you will find job roles you have applied for</p>
+            <div class="col-md-9 bg-white padding-2">
+                <h2><i>Recent Applications</i></h2>
+                <p>Below you will find job roles you have applied for</p>
 
-            <?php
-             $sql = "SELECT * FROM job_post INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost WHERE apply_job_post.id_user='$_SESSION[id_user]'";
-                  $result = $conn->query($sql);
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Created At</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql = "SELECT * FROM job_post INNER JOIN apply_job_post ON job_post.id_jobpost = apply_job_post.id_jobpost WHERE apply_job_post.id_user = '$_SESSION[id_user]'";
+                    $result = $conn->query($sql);
 
-                  if($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) 
-                    {     
-            ?>
-            <div class="attachment-block clearfix padding-2">
-                <h4 class="attachment-heading"><a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>"><?php echo $row['jobtitle']; ?></a></h4>
-                <div class="attachment-text padding-2">
-                  <div class="pull-left"><i class="fa fa-calendar"></i> <?php echo $row['createdat']; ?></div>  
-                  <?php 
-
-                  if($row['status'] == 0) {
-                    echo '<div class="pull-right"><strong class="text-orange">Pending</strong></div>';
-                  } else if ($row['status'] == 1) {
-                    echo '<div class="pull-right"><strong class="text-red">Rejected</strong></div>';
-                  } else if ($row['status'] == 2) {
-                    echo '<div class="pull-right"><strong class="text-green">Under Review</strong></div> ';
-                  }
-                  ?>
-                                
-                </div>
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            ?>
+                            <tr>
+                                <td><a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>"><?php echo $row['jobtitle']; ?></a></td>
+                                <td><i class="fa fa-calendar"></i> <?php echo $row['createdat']; ?></td>
+                                <td>
+                                    <?php
+                                    if ($row['status'] == 0) {
+                                        echo '<strong class="text-orange">Pending</strong>';
+                                    } else if ($row['status'] == 1) {
+                                        echo '<strong class="text-red">Rejected</strong>';
+                                    } else if ($row['status'] == 2) {
+                                        echo '<strong class="text-green">Under Review</strong>';
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>" class="btn btn-primary btn-sm">View</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
+                    </tbody>
+                </table>
             </div>
-
-            <?php
-              }
-            }
-            ?>
-            
-          </div>
         </div>
       </div>
     </section>
@@ -222,7 +232,25 @@ require_once("../db.php");
 
 </div>
 <!-- ./wrapper -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
+<!-- Include jQuery and DataTables Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<!-- Initialize DataTables -->
+<script>
+    $(document).ready(function () {
+        $('#example1').DataTable({
+            "paging": true,         // Enable pagination
+            "lengthChange": false,  // Disable length change dropdown
+            "searching": true,      // Enable search
+            "ordering": true,       // Enable sorting
+            "info": true,           // Show info text
+            "autoWidth": false      // Disable auto width
+        });
+    });
+</script>
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->

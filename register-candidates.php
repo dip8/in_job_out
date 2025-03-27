@@ -61,34 +61,7 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <li>
-            <a href="jobs">Jobs</a>
-          </li>
-          <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
-          <li>
-            <a href="login">Login</a>
-          </li>
-          <li>
-            <a href="sign-up">Sign Up</a>
-          </li>  
-          <?php } else { 
 
-            if(isset($_SESSION['id_user'])) { 
-          ?>        
-          <li>
-            <a href="user/index">Dashboard</a>
-          </li>
-          <?php
-          } else if(isset($_SESSION['id_company'])) { 
-          ?>        
-          <li>
-            <a href="company/index">Dashboard</a>
-          </li>
-          <?php } ?>
-          <li>
-            <a href="logout">Logout</a>
-          </li>
-          <?php } ?>          
         </ul>
       </div>
     </nav>
@@ -182,7 +155,12 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
                 <textarea class="form-control input-lg" rows="4" id="skills" name="skills" placeholder="Enter Skills"></textarea>
               </div>              
               <div class="form-group">
-                <input class="form-control input-lg" type="text" id="designation" name="designation" placeholder="Designation">
+                  <select class="form-control input-lg" id="designation" name="designation">
+                      <option value="">Select Designation</option>
+                      <option value="fresher">Fresher</option>
+                      <option value="experienced">Experienced</option>
+                  </select>
+
               </div>
 
               <div class="form-group">
