@@ -171,10 +171,17 @@ require_once("db.php");
           <li><a href="index#candidates">Candidates</a></li>
           <li><a href="index#company">Company</a></li>
           <li><a href="index#about">About Us</a></li>
-
+            <li class="dropdown">
+                <a href="jobs" class="dropdown-toggle" data-toggle="dropdown">Faq`s <b class="caret"></b></a>
+                <!-- Nested ul for the submenu -->
+                <ul class="dropdown-menu">
+                    <li><a href="privacy_policy">Privacy Policy</a></li>
+                    <li><a href="terms-and-conditions">Terms & Conditions</a></li>
+                </ul>
+            </li>
           <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
-          <li><a href="login-candidates">Candidate Login / Registration</a></li>
-          <li><a href="login-company">Company Login / Registration</a></li>
+          <li><a href="login-candidates">Candidate Login</a></li>
+          <li><a href="login-company">Company Login</a></li>
           <?php } else { 
             if(isset($_SESSION['id_user'])) { 
           ?>        
@@ -289,9 +296,12 @@ require_once("db.php");
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+       <div class="text-center">
+        <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
+        reserved.
+    </div>
     <div class="text-center">
-      <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
-    reserved.
+        <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
     </div>
   </footer>
 
@@ -302,7 +312,8 @@ require_once("db.php");
 
 </div>
 <!-- ./wrapper -->
-
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->

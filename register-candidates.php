@@ -106,7 +106,7 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
                 <input class="form-control input-lg" type="text" id="stream" name="stream" placeholder="Stream">
               </div>                    
               <div class="form-group checkbox">
-                <label><input type="checkbox"> I accept terms & conditions</label>
+                  <label><input type="checkbox" required> I accept <a href="register-candidates">terms & conditions</a> </label>
               </div>
               <div class="form-group">
                 <button class="btn btn-flat btn-success">Register</button>
@@ -180,9 +180,12 @@ if(isset($_SESSION['id_user']) || isset($_SESSION['id_company'])) {
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+       <div class="text-center">
+        <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
+        reserved.
+    </div>
     <div class="text-center">
-      <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
-    reserved.
+        <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
     </div>
   </footer>
 

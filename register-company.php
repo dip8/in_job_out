@@ -77,22 +77,22 @@ require_once("db.php");
           <form method="post" id="registerCompanies" action="addcompany" enctype="multipart/form-data">
             <div class="col-md-6 latest-job ">
               <div class="form-group">
-                <input class="form-control input-lg" type="text" name="name" placeholder="Full Name" required>
+                <input class="form-control input-lg" type="text" name="name" placeholder="Full Name *" required>
               </div>
               <div class="form-group">
-                <input class="form-control input-lg" type="text" name="companyname" placeholder="Company Name" required>
+                <input class="form-control input-lg" type="text" name="companyname" placeholder="Company Name *" required>
               </div>
               <div class="form-group">
                 <input class="form-control input-lg" type="text" name="website" placeholder="Website">
               </div>
               <div class="form-group">
-                <input class="form-control input-lg" type="text" name="email" placeholder="Email" required>
+                <input class="form-control input-lg" type="text" name="email" placeholder="Email *" required>
               </div>
               <div class="form-group">
                 <textarea class="form-control input-lg" rows="4" name="aboutme" placeholder="Brief info about your company"></textarea>
               </div>
               <div class="form-group checkbox">
-                <label><input type="checkbox" required> I accept terms & conditions</label>
+                <label><input type="checkbox" required> I accept <a href="register-candidates">terms & conditions</a> </label>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-flat btn-success">Register</button>
@@ -119,16 +119,16 @@ require_once("db.php");
             </div>
             <div class="col-md-6 latest-job ">
               <div class="form-group">
-                <input class="form-control input-lg" type="password" name="password" placeholder="Password" required>
+                <input class="form-control input-lg" type="password" name="password" placeholder="Password *" required>
               </div>
               <div class="form-group">
-                <input class="form-control input-lg" type="password" name="cpassword" placeholder="Confirm Password" required>
+                <input class="form-control input-lg" type="password" name="cpassword" placeholder="Confirm Password  *" required>
               </div>
                <div id="passwordError" class="btn btn-flat btn-danger hide-me" >
                     Password Mismatch!! 
                   </div>
               <div class="form-group">
-                <input class="form-control input-lg" type="text" name="contactno" placeholder="Phone Number" minlength="10" maxlength="10" autocomplete="off" onkeypress="return validatePhone(event);" required>
+                <input class="form-control input-lg" type="text" name="contactno" placeholder="Phone Number  *" minlength="10" maxlength="10" autocomplete="off" onkeypress="return validatePhone(event);" required>
               </div>
               <div class="form-group">
                 <select class="form-control  input-lg" id="country" name="country" required>
@@ -173,9 +173,12 @@ require_once("db.php");
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+       <div class="text-center">
+        <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
+        reserved.
+    </div>
     <div class="text-center">
-      <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
-    reserved.
+        <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
     </div>
   </footer>
 

@@ -60,8 +60,16 @@ require_once("db.php");
         <ul class="nav navbar-nav">
             <li><a href="jobs">Jobs</a></li>
             <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
-                <li><a href="login-candidates">Candidate Login / Registration</a></li>
-                <li><a href="login-company">Company Login / Registration</a></li>
+                <li><a href="login-candidates">Candidate Login</a></li>
+                <li><a href="login-company">Company Login</a></li>
+                <li class="dropdown">
+                    <a href="jobs" class="dropdown-toggle" data-toggle="dropdown">Faq`s <b class="caret"></b></a>
+                    <!-- Nested ul for the submenu -->
+                    <ul class="dropdown-menu">
+                        <li><a href="full-time-jobs">Privacy Policy</a></li>
+                        <li><a href="part-time-jobs">Terms & Conditions</a></li>
+                    </ul>
+                </li>
             <?php } else {
                 if(isset($_SESSION['id_user'])) {
                     ?>
@@ -153,27 +161,29 @@ require_once("db.php");
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer" style="margin-left: 0px;">
-    <div class="text-center">
-      <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
-    reserved.
-    </div>
-  </footer>
+    <footer class="main-footer" style="margin-left: 0px;">
+        <div class="text-center">
+            <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
+            reserved.
+        </div>
+    </footer>
 
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
 
 </div>
 <!-- ./wrapper -->
-
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="js/adminlte.min.js"></script>
+<script src="js/jquery.twbsPagination.min.js"></script>
 
 
 
