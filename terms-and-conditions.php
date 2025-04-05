@@ -137,13 +137,13 @@ require_once("db.php");
                 <li><a href="#candidates">Candidates</a></li>
                 <li><a href="#company">Company</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">FAQs <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="privacy_policy">Privacy Policy</a></li>
-                        <li><a href="terms-and-conditions">Terms & Conditions</a></li>
-                    </ul>
-                </li>
+<!--                <li class="dropdown">-->
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">FAQs <b class="caret"></b></a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a href="privacy_policy">Privacy Policy</a></li>-->
+<!--                        <li><a href="terms-and-conditions">Terms & Conditions</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
                 <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
                     <li><a href="login-candidates">Candidate Login</a></li>
                     <li><a href="login-company">Company Login</a></li>
@@ -164,51 +164,75 @@ require_once("db.php");
 </nav>
 <div class="container">
     <div class="row">
+        <div class="col-md-8 col-md-offset-2">
     <h1>Terms and Conditions</h1>
-    <p>Please read and understand these Terms and Conditions before registering for our services.</p>
+    <p>Please read and understand these Terms and Conditions before registering for our services. By registering, you acknowledge that you are entering into a contract with us based on these Terms and Conditions.
+    </p>
+        <p> Visitors to <strong>In Job Out</strong> who do not register as Members (Employers or Employees) also agree to be bound by these Terms and Conditions each time they access the <strong>In Job Out</strong> website.
+        </p>
+        <p> If you do not accept these Terms and Conditions, please refrain from using <strong>In Job Out</strong>.
+    </p>
 
     <h2>Acceptance of Terms</h2>
-    <p>By using this website, both Employers and Employees agree to these Terms and Conditions.</p>
+    <p>By using this website, both Employers and Employees agree to these Terms and Conditions</p>
 
     <h2>Purpose of the Website</h2>
-    <p>The website connects Employers with Employees and allows Employers to view Employee profiles. We do not issue experience certificates.</p>
+    <p>The website is designed to connect Employers with Employees and allow Employers to view Employee profiles detailing their work experience. <strong>In Job Out</strong> does not issue experience certificates to registered members.</p>
 
     <h2>Content Restrictions</h2>
-    <p>Profiles containing political or illegal content will not be accepted.</p>
+    <p>Profiles containing political or illegal content will not be accepted under any circumstances.</p>
 
     <h2>Data Security</h2>
-    <p>We take reasonable precautions to protect data but are not liable for unauthorized access by third parties.</p>
+    <p><strong>In Job Out</strong> takes reasonable precautions to protect Employer and Employee data but is not liable for unauthorized access by any third party.</p>
 
     <h2>Member Responsibilities</h2>
-    <p>Members must provide valid contact details and must not impersonate others.</p>
+    <ul>
+        <li>Members must provide valid and up-to-date contact details when using the website.</li>
+        <li>Members must not impersonate any other individual or entity or use a name they are not authorized to use.</li>
+    </ul>
 
     <h2>Liability Disclaimer</h2>
-    <p>We are not responsible for any loss or damage resulting from website usage.</p>
+    <p><strong>In Job Out</strong> is not responsible for any loss or damage suffered by a Member due to the use of the website, including loss of data, financial loss, or physical damage.</p>
 
     <h2>Privacy Policy</h2>
-    <p>By agreeing to these Terms, you also consent to our privacy policy.</p>
+    <p>Our privacy policy is an integral part of these Terms and Conditions. By agreeing to these Terms, you also consent to how we handle your personal data as outlined in our privacy policy.</p>
 
     <h2>Modifications to Terms</h2>
-    <p>We reserve the right to modify these Terms and Conditions at any time.</p>
+    <p>The management reserves the right to modify these Terms and Conditions at any time without prior notice.</p>
 
     <h2>Legal Jurisdiction</h2>
     <p>These Terms are governed by Indian law and fall under the jurisdiction of Indian courts.</p>
 
     <h2>Placement Agencies & Consultancies</h2>
-    <p>We do not cater to placement agencies, and any payments made by them will not be refunded.</p>
+    <p><strong>In Job Out</strong> does not cater to placement agencies or consultancies. Any payments made by such agencies will not be refunded under any circumstances.</p>
 
     <h2>Employer’s Responsibility for Background Verification</h2>
-    <p>We are not responsible for crimes committed by candidates. Employers must conduct background verification.</p>
+    <p><strong>In Job Out</strong> is not responsible for any crimes or illegal activities committed by candidates at an employer’s premises. Employers or their respective companies are responsible for conducting background verification of the candidates they hire.</p>
+            <p>By using <strong>In Job Out</strong>, you agree to abide by these Terms and Conditions.</p>
+        </div>
     </div>
-<footer class="main-footer" style="margin-left: 0px;">
-      <div class="text-center">
-        <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
-        reserved.
-    </div>
-    <div class="text-center">
-        <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
-    </div>
-</footer>
+</div>
+    <footer class="main-footer" style="margin-left: 0px;">
+        <div class="row" style="text-align: -webkit-center;">
+            <div class="col-md-4">
+                <a href="privacy_policy">Privacy Policy</a>
+            </div>
+            <div class="col-md-4">
+                <a href="terms-and-conditions">Terms & Conditions</a>
+            </div>
+            <div class="col-md-4">
+                <a href="faq">FAQ`s</a>
+            </div>
+        </div>
+        <br>
+        <div class="text-center">
+            <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
+            reserved.
+        </div>
+        <div class="text-center">
+            <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
+        </div>
+    </footer>
 
 <!-- /.control-sidebar -->
 <!-- Add the sidebar's background. This div must be placed

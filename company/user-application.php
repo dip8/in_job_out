@@ -58,6 +58,18 @@ if($result->num_rows == 0)
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        #datah4 {
+            display: flex;
+            justify-content: space-between;
+        }
+        @media (max-width: 768px) {
+            #datah4 {
+                display: grid;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
 <body class="hold-transition  sidebar-mini">
 <div class="wrapper">
@@ -128,15 +140,20 @@ if($result->num_rows == 0)
                 <div class="clearfix"></div>
                 <hr>
                 <div>
+                    <h4 class="attachment-heading" id="datah4">
+                        <span><strong>Email Id :</strong> <?php echo $row['email']; ?></span>
+                        <span><strong>Qualification :</strong> <?php echo $row['qualification']; ?></span>
+                        <span><strong>City :</strong> <?php echo $row['city']; ?></span>
+                    </h4>
+                    <br>
+                    <h4 class="attachment-heading" id="datah4">
+                        <span><strong>Designation :</strong> <?php echo $row['designation']; ?></span>
+                    </h4>
                   <?php
-                    echo 'Email: '.$row['email'];
-                    echo '<br>';
-                    echo 'City: '.$row['city'];
                     echo '<br>';
                     if($row['resume'] != "") {
                       echo '<a href="../uploads/resume/'.$row['resume'].'" class="btn btn-info" download="Resume">Download Resume</a>';
                     }
-                    echo '<br>';
                     echo '<br>';
                     echo '<br>';
                     echo '<br>';
@@ -172,6 +189,21 @@ if($result->num_rows == 0)
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+      <div class="row" style="text-align: -webkit-center;">
+          <div class="col-md-3">
+              <a href="privacy_policy">Privacy Policy</a>
+          </div>
+          <div class="col-md-3">
+              <a href="terms-and-conditions">Terms & Conditions</a>
+          </div>
+          <div class="col-md-3">
+              <a href="faq">FAQ`s</a>
+          </div>
+          <div class="col-md-3">
+              <a href="contact">Contact</a>
+          </div>
+      </div>
+      <br>
        <div class="text-center">
         <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
         reserved.
@@ -180,7 +212,6 @@ if($result->num_rows == 0)
         <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
     </div>
   </footer>
-
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->

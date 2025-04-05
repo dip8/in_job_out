@@ -154,6 +154,18 @@ require_once("../db.php");
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+      <div class="row" style="text-align: -webkit-center;">
+          <div class="col-md-4">
+              <a href="privacy_policy">Privacy Policy</a>
+          </div>
+          <div class="col-md-4">
+              <a href="terms-and-conditions">Terms & Conditions</a>
+          </div>
+          <div class="col-md-4">
+              <a href="faq">FAQ`s</a>
+          </div>
+      </div>
+      <br>
     <div class="text-center">
       <strong>Copyright &copy; 2016-2017 <a href="jonsnow.netai.net">Job Portal</a>.</strong> All rights
     reserved.

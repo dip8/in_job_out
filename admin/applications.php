@@ -99,7 +99,7 @@ require_once("../db.php");
                     <thead>
                       <th>Candidate</th>
                       <th>Highest Qualification</th>
-                      <th>Skills</th>
+                      <th>Experience</th>
                       <th>City</th>
                       <th>State</th>
                       <th>Download Resume</th>
@@ -118,14 +118,15 @@ require_once("../db.php");
                       ?>
                       <tr>
                         <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
-                        <td><?php echo $row['qualification']; ?></td>
-                        <td>
-                          <?php
-                          foreach ($skills as $value) {
-                            echo ' <span class="label label-success">'.$value.'</span>';
-                          }
-                          ?>
-                        </td>
+                          <td><?php echo $row['qualification']; ?></td>
+                          <td><?php echo $row['experience']; ?></td>
+<!--                        <td>-->
+<!--                          --><?php /*
+//                          foreach ($skills as $value) {
+//                            echo ' <span class="label label-success">'.$value.'</span>';
+//                          }*/
+//                          ?>
+<!--                        </td>-->
                         <td><?php echo $row['city']; ?></td>
                         <td><?php echo $row['state']; ?></td>
                         <?php if($row['resume'] != '') { ?>
@@ -195,15 +196,27 @@ require_once("../db.php");
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer" style="margin-left: 0px;">
-       <div class="text-center">
-        <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
-        reserved.
-    </div>
-    <div class="text-center">
-        <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
-    </div>
-  </footer>
+    <footer class="main-footer" style="margin-left: 0px;">
+        <div class="row" style="text-align: -webkit-center;">
+            <div class="col-md-4">
+                <a href="privacy_policy">Privacy Policy</a>
+            </div>
+            <div class="col-md-4">
+                <a href="terms-and-conditions">Terms & Conditions</a>
+            </div>
+            <div class="col-md-4">
+                <a href="faq">FAQ`s</a>
+            </div>
+        </div>
+        <br>
+        <div class="text-center">
+            <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
+            reserved.
+        </div>
+        <div class="text-center">
+            <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
+        </div>
+    </footer>
 
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed

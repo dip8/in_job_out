@@ -124,14 +124,6 @@ require_once("db.php");
           <li><a href="#candidates">Candidates</a></li>
           <li><a href="#company">Company</a></li>
           <li><a href="#about">About Us</a></li>
-            <li class="dropdown">
-                <a href="jobs" class="dropdown-toggle" data-toggle="dropdown">Faq`s <b class="caret"></b></a>
-                <!-- Nested ul for the submenu -->
-                <ul class="dropdown-menu">
-                    <li><a href="privacy_policy">Privacy Policy</a></li>
-                    <li><a href="terms-and-conditions">Terms & Conditions</a></li>
-                </ul>
-            </li>
           <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
           <li><a href="login-candidates">Candidate Login</a></li>
           <li><a href="login-company">Company Login</a></li>
@@ -418,6 +410,21 @@ require_once("db.php");
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+      <div class="row" style="text-align: -webkit-center;">
+          <div class="col-md-3">
+              <a href="privacy_policy">Privacy Policy</a>
+          </div>
+          <div class="col-md-3">
+              <a href="terms-and-conditions">Terms & Conditions</a>
+          </div>
+          <div class="col-md-3">
+              <a href="faq">FAQ`s</a>
+          </div>
+          <div class="col-md-3">
+              <a href="contact">Contact</a>
+          </div>
+      </div>
+      <br>
        <div class="text-center">
         <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
         reserved.

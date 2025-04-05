@@ -157,6 +157,21 @@ require_once("../db.php");
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+      <div class="row" style="text-align: -webkit-center;">
+          <div class="col-md-3">
+              <a href="privacy_policy">Privacy Policy</a>
+          </div>
+          <div class="col-md-3">
+              <a href="terms-and-conditions">Terms & Conditions</a>
+          </div>
+          <div class="col-md-3">
+              <a href="faq">FAQ`s</a>
+          </div>
+          <div class="col-md-3">
+              <a href="contact">Contact</a>
+          </div>
+      </div>
+      <br>
        <div class="text-center">
         <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
         reserved.
@@ -165,7 +180,6 @@ require_once("../db.php");
         <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
     </div>
   </footer>
-
 
 
 </div>

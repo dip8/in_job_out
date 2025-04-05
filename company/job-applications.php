@@ -45,6 +45,18 @@ require_once("../db.php");
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        #datah4 {
+            display: flex;
+            justify-content: space-between;
+        }
+        @media (max-width: 768px) {
+            #datah4 {
+                display: grid;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
 <body class="hold-transition  sidebar-mini">
 <div class="wrapper">
@@ -93,42 +105,140 @@ require_once("../db.php");
               </div>
             </div>
           </div>
-          <div class="col-md-9 bg-white padding-2">
-            <h2><i>Recent Applications</i></h2>
-
             <?php
-             $sql = "SELECT * FROM job_post INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost  INNER JOIN users ON users.id_user=apply_job_post.id_user WHERE apply_job_post.id_company='$_SESSION[id_company]'";
-                  $result = $conn->query($sql);
+            // Define the number of results per page
+            $results_per_page = 5;
 
-                  if($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) 
-                    {     
+            // Get the current page number
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            if ($page < 1) $page = 1;
+
+            // Calculate the starting point for results
+            $start_limit = ($page - 1) * $results_per_page;
+
+            // Count total number of applications
+            $sql_count = "SELECT COUNT(*) AS total FROM job_post 
+              INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost  
+              INNER JOIN users ON users.id_user=apply_job_post.id_user 
+              WHERE apply_job_post.id_company='$_SESSION[id_company]'";
+            $result_count = $conn->query($sql_count);
+            $total_rows = $result_count->fetch_assoc()['total'];
+            $total_pages = ceil($total_rows / $results_per_page);
+
+            // Fetch paginated data
+            $sql = "SELECT * FROM job_post 
+        INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost  
+        INNER JOIN users ON users.id_user=apply_job_post.id_user 
+        WHERE apply_job_post.id_company='$_SESSION[id_company]' 
+        LIMIT $start_limit, $results_per_page";
+
+            $result = $conn->query($sql);
             ?>
-            <div class="attachment-block clearfix padding-2">
-                <h4 class="attachment-heading"><a href="user-application?id=<?php echo $row['id_user']; ?>&id_jobpost=<?php echo $row['id_jobpost']; ?>"><?php echo $row['jobtitle'].' @ ('.$row['firstname'].' '.$row['lastname'].')'; ?></a></h4>
-                <div class="attachment-text padding-2">
-                  <div class="pull-left"><i class="fa fa-calendar"></i> <?php echo $row['createdat']; ?></div>  
-                  <?php 
 
-                  if($row['status'] == 0) {
-                    echo '<div class="pull-right"><strong class="text-orange">Pending</strong></div>';
-                  } else if ($row['status'] == 1) {
-                    echo '<div class="pull-right"><strong class="text-red">Rejected</strong></div>';
-                  } else if ($row['status'] == 2) {
-                    echo '<div class="pull-right"><strong class="text-green">Under Review</strong></div> ';
-                  }
-                  ?>
-                                
-                </div>
+            <div class="col-md-9 bg-white padding-2">
+                <h2><i>Recent Applications</i></h2>
+
+                <?php if ($result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <div class="attachment-block clearfix padding-2">
+                            <h4 class="attachment-heading" id="datah4">
+                    <span>
+                        <a href="user-application?id=<?= $row['id_user']; ?>&id_jobpost=<?= $row['id_jobpost']; ?>">
+                            <?= $row['jobtitle'] . ' (' . $row['firstname'] . ' ' . $row['lastname'] . ')'; ?>
+                        </a>
+                    </span>
+                                <span><strong>Qualification :</strong> <?= $row['qualification']; ?></span>
+                                <span><strong>City :</strong> <?= $row['city']; ?></span>
+                            </h4>
+                            <br>
+                            <h4 class="attachment-heading" id="datah4">
+                                <span><strong>Email Id :</strong> <?= $row['email']; ?></span>
+                                <span><strong>Designation :</strong> <?= $row['designation']; ?></span>
+                            </h4>
+                            <div class="attachment-text padding-2">
+                                <div class="pull-left"><i class="fa fa-calendar"></i> <?= $row['createdat']; ?></div>
+                                <?php
+                                if ($row['status'] == 0) {
+                                    echo '<div class="pull-right"><strong class="text-orange">Pending</strong></div>';
+                                } elseif ($row['status'] == 1) {
+                                    echo '<div class="pull-right"><strong class="text-red">Rejected</strong></div>';
+                                } elseif ($row['status'] == 2) {
+                                    echo '<div class="pull-right"><strong class="text-green">Under Review</strong></div>';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p>No applications found.</p>
+                <?php endif; ?>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <?php if ($page > 1): ?>
+                            <li><a href="?page=<?= $page - 1; ?>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                        <?php endif; ?>
+
+                        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                            <li class="<?= ($i == $page) ? 'active' : ''; ?>"><a href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                        <?php endfor; ?>
+
+                        <?php if ($page < $total_pages): ?>
+                            <li><a href="?page=<?= $page + 1; ?>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </nav>
+
             </div>
 
-            <?php
-              }
-            }
-            ?>
-            
-          </div>
-      </div>
+            <!--          <div class="col-md-9 bg-white padding-2">-->
+<!--            <h2><i>Recent Applications</i></h2>-->
+<!---->
+<!--            --><?php
+//             $sql = "SELECT * FROM job_post INNER JOIN apply_job_post ON job_post.id_jobpost=apply_job_post.id_jobpost  INNER JOIN users ON users.id_user=apply_job_post.id_user WHERE apply_job_post.id_company='$_SESSION[id_company]'";
+//                  $result = $conn->query($sql);
+//
+//                  if($result->num_rows > 0) {
+//                    while($row = $result->fetch_assoc())
+//                    {
+//            ?>
+<!--            <div class="attachment-block clearfix padding-2">-->
+<!--                <h4 class="attachment-heading" id="datah4">-->
+<!--                    <span><a href="user-application?id=--><?php //echo $row['id_user']; ?><!--&id_jobpost=--><?php //echo $row['id_jobpost']; ?><!--">-->
+<!--                        --><?php //echo $row['jobtitle'].'       ('.$row['firstname'].' '.$row['lastname'].')'; ?>
+<!--                    </a></span>-->
+<!--                    <span><strong>Qualification :</strong> --><?php //echo $row['qualification']; ?><!--</span>-->
+<!--                    <span><strong>City :</strong> --><?php //echo $row['city']; ?><!--</span>-->
+<!--                </h4>-->
+<!--                <br>-->
+<!--                <h4 class="attachment-heading" id="datah4">-->
+<!--                    <span><strong>Email Id :</strong> --><?php //echo $row['email']; ?><!--</span>-->
+<!--                    <span><strong>Designation :</strong> --><?php //echo $row['designation']; ?><!--</span>-->
+<!--                </h4>-->
+<!--                <div class="attachment-text padding-2">-->
+<!--                  <div class="pull-left"><i class="fa fa-calendar"></i> --><?php //echo $row['createdat']; ?><!--</div>  -->
+<!--                  --><?php //
+//
+//                  if($row['status'] == 0) {
+//                    echo '<div class="pull-right"><strong class="text-orange">Pending</strong></div>';
+//                  } else if ($row['status'] == 1) {
+//                    echo '<div class="pull-right"><strong class="text-red">Rejected</strong></div>';
+//                  } else if ($row['status'] == 2) {
+//                    echo '<div class="pull-right"><strong class="text-green">Under Review</strong></div> ';
+//                  }
+//                  ?>
+<!--                                -->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            --><?php
+//              }
+//            }
+//            ?>
+<!--            -->
+<!--          </div>-->
+<!--      </div>-->
     </section>
 
     
@@ -137,6 +247,21 @@ require_once("../db.php");
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+      <div class="row" style="text-align: -webkit-center;">
+          <div class="col-md-3">
+              <a href="privacy_policy">Privacy Policy</a>
+          </div>
+          <div class="col-md-3">
+              <a href="terms-and-conditions">Terms & Conditions</a>
+          </div>
+          <div class="col-md-3">
+              <a href="faq">FAQ`s</a>
+          </div>
+          <div class="col-md-3">
+              <a href="contact">Contact</a>
+          </div>
+      </div>
+      <br>
        <div class="text-center">
         <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
         reserved.
@@ -145,7 +270,6 @@ require_once("../db.php");
         <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
     </div>
   </footer>
-
 
 
 </div>

@@ -171,14 +171,14 @@ require_once("db.php");
           <li><a href="index#candidates">Candidates</a></li>
           <li><a href="index#company">Company</a></li>
           <li><a href="index#about">About Us</a></li>
-            <li class="dropdown">
-                <a href="jobs" class="dropdown-toggle" data-toggle="dropdown">Faq`s <b class="caret"></b></a>
+<!--            <li class="dropdown">-->
+<!--                <a href="jobs" class="dropdown-toggle" data-toggle="dropdown">Faq`s <b class="caret"></b></a>-->
                 <!-- Nested ul for the submenu -->
-                <ul class="dropdown-menu">
-                    <li><a href="privacy_policy">Privacy Policy</a></li>
-                    <li><a href="terms-and-conditions">Terms & Conditions</a></li>
-                </ul>
-            </li>
+<!--                <ul class="dropdown-menu">-->
+<!--                    <li><a href="privacy_policy">Privacy Policy</a></li>-->
+<!--                    <li><a href="terms-and-conditions">Terms & Conditions</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
           <?php if(empty($_SESSION['id_user']) && empty($_SESSION['id_company'])) { ?>
           <li><a href="login-candidates">Candidate Login</a></li>
           <li><a href="login-company">Company Login</a></li>
@@ -296,6 +296,21 @@ require_once("db.php");
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+      <div class="row" style="text-align: -webkit-center;">
+          <div class="col-md-3">
+              <a href="privacy_policy">Privacy Policy</a>
+          </div>
+          <div class="col-md-3">
+              <a href="terms-and-conditions">Terms & Conditions</a>
+          </div>
+          <div class="col-md-3">
+              <a href="faq">FAQ`s</a>
+          </div>
+          <div class="col-md-3">
+              <a href="contact">Contact</a>
+          </div>
+      </div>
+      <br>
        <div class="text-center">
         <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
         reserved.
@@ -304,7 +319,6 @@ require_once("db.php");
         <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
     </div>
   </footer>
-
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -355,6 +369,33 @@ require_once("db.php");
       Pagination();
     }
   });
+  $("#searchBtn").on("click", function (e) {
+      e.preventDefault();
+      performSearch(); // Call a function to handle search
+  });
+
+  // Trigger search when the Enter key is pressed in #searchBar
+  $("#searchBar").on("keydown", function (e) {
+      if (e.keyCode === 13) { // Check if Enter key is pressed
+          e.preventDefault(); // Prevent form submission
+          performSearch();
+      }
+  });
+
+  // Function to handle search
+  function performSearch() {
+      var searchResult = $("#searchBar").val();
+      var filter = "searchBar";
+
+      if (searchResult !== "") {
+          $("#pagination").twbsPagination('destroy');
+          Search(searchResult, filter);
+      } else {
+          $("#pagination").twbsPagination('destroy');
+          Pagination();
+      }
+  }
+
 </script>
 
 <script>

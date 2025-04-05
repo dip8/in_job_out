@@ -106,7 +106,8 @@ require_once("../db.php");
                 <div class="box-body table-responsive no-padding">
                   <table id="example2" class="table table-hover">
                     <thead>
-                      <th>Job Title</th>
+                    <th>Job Title</th>
+                    <th>Number of Applicant</th>
                       <th>View</th>
                     </thead>
                     <tbody>
@@ -118,9 +119,16 @@ require_once("../db.php");
                       if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) 
                         {
-                      ?>
+                            $stmt = $conn->prepare("SELECT COUNT(id_apply) AS total FROM apply_job_post WHERE id_company = ? and id_jobpost =?");
+                            $stmt->bind_param("ii", $row['id_company'],$row['id_jobpost']); // Ensure 'id_company' is correctly referenced
+                            $stmt->execute();
+                            $stmt->bind_result($total);
+                            $stmt->fetch();
+                            $stmt->close()
+                            ?>
                       <tr>
-                        <td><?php echo $row['jobtitle']; ?></td>
+                        <td><?php echo $row['jobtitle'] ?></td>
+                          <td><?php echo $total?></td>
                         <td>
                             <a href="view-job-post?id=<?php echo $row['id_jobpost']; ?>"><i class="fa fa-address-card-o"></i></a>
                             &nbsp;&nbsp;&nbsp;
@@ -149,6 +157,21 @@ require_once("../db.php");
   <!-- /.content-wrapper -->
 
   <footer class="main-footer" style="margin-left: 0px;">
+      <div class="row" style="text-align: -webkit-center;">
+          <div class="col-md-3">
+              <a href="privacy_policy">Privacy Policy</a>
+          </div>
+          <div class="col-md-3">
+              <a href="terms-and-conditions">Terms & Conditions</a>
+          </div>
+          <div class="col-md-3">
+              <a href="faq">FAQ`s</a>
+          </div>
+          <div class="col-md-3">
+              <a href="contact">Contact</a>
+          </div>
+      </div>
+      <br>
        <div class="text-center">
         <strong>Copyright &copy; 2025 <a href="https://in_job_out.com">In Job Out</a>.</strong> All rights
         reserved.
@@ -157,7 +180,6 @@ require_once("../db.php");
         <strong>Design and develop by <a href="https://cloudeflux.com">Cloudeflux LLP</a>.</strong>
     </div>
   </footer>
-
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
